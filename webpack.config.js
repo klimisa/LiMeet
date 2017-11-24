@@ -49,11 +49,9 @@ var config = {
                 fallback: 'style-loader',
                 use: [ 'css-loader' ]
                 })
-                //use: ExtractTextPlugin.extract('style-loader', 'css-loader')
-
             },
             {
-                test: /\.(png|jpg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(png|jpg|gif|ico)(\?v=\d+\.\d+\.\d+)?$/,
                 use: 'url-loader?limit=100000'
             },
             {

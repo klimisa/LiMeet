@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Location } from 'react-router';
 import { Dropdown } from 'react-bootstrap';
 import { smoothlyMenu } from '../layouts/Helpers';
 
@@ -14,8 +15,12 @@ class TopHeader extends React.Component {
         return (
             <div className="row border-bottom">
                 <nav className="navbar navbar-static-top white-bg" role="navigation" style={{marginBottom: 0}}>
-                    <div className="navbar-header">
-                        <a className="navbar-minimalize minimalize-styl-2 btn btn-primary " onClick={this.toggleNavigation} href="#"><i className="fa fa-bars"></i> </a>
+                <div className="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" className="navbar-toggle collapsed" type="button">
+                        <i className="fa fa-reorder"></i>
+                    </button>
+                    <Link to="/" className="navbar-brand">Intralot</Link>
+           
                     </div>
                     <ul className="nav navbar-top-links navbar-right">
                         <li>

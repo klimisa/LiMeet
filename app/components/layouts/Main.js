@@ -12,11 +12,8 @@ class Main extends React.Component {
         return (
             <div id="wrapper">
                 <Progress />
-                <Navigation location={this.props.location}/>
-
                 <div id="page-wrapper" className={wrapperClass}>
-
-                    <TopHeader />
+                    <TopHeader location={this.props.location} />
 
                     {this.props.children}
 
