@@ -1,49 +1,72 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-    entry: [
-        'babel-polyfill',
-        'react-hot-loader/patch',
-        path.resolve(__dirname, 'src/index')
-    ],
+var config = {
+    entry: {
+        app: [
+            'webpack-dev-server/client?http://localhost:8000',
+            'webpack/hot/only-dev-server',
+            './app/index'
+        ],
+        // vendor: ['vendor.js']
+    },
+    devtool: 'eval',
+    output: {
+        path: path.join(__dirname, '/public/'),
+        filename: 'bundle.js',
+        publicPath: '/'
+    },
     plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin("styles.css"),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            '$': "jquery",
+            'jQuery': "jquery",
+            'window.jQuery': "jquery",
+            'window.$': 'jquery'
+
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor'],
+            filename: 'vendor.js',
+            minChunks: Infinity
+        }),
+        new webpack.DefinePlugin({
+            "require.specified": "require.resolve"
+        })
     ],
     module: {
         rules: [
             {
                 test: /\.js$/,
-                include: path.join(__dirname, 'src'),
-                use: ['babel-loader']
-            },
-            {
-                test: /\.(woff|woff2|ttf|eot)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-                loader: 'file-loader?name=fonts/[name]-[hash].[ext]'
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: 'file-loader?name=images/[name]-[hash].[ext]'
+                use: ['babel-loader'],
+                include: path.join(__dirname, 'app')
             },
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: { loader: 'style-loader', options: { base: 2000 } },
-                    use: ['css-loader']
+                fallback: 'style-loader',
+                use: [ 'css-loader' ]
                 })
+                //use: ExtractTextPlugin.extract('style-loader', 'css-loader')
+
+            },
+            {
+                test: /\.(png|jpg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=100000'
+            },
+            {
+                test: /\.(eot|com|json|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=10000&mimetype=image/svg+xml'
             }
         ]
-    },
-    devServer: {
-        contentBase: 'src',
-        hot: true
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: "/",
-    },
+    }
 };
+
+
+module.exports = config;
