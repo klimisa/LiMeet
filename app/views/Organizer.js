@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+
+import moment from 'moment';
+
 import RichTextEditor from '../components/common/RichTextEditor';
 import Dropdown from '../components/common/Dropdown';
 import MultiDropdown from '../components/common/MultiDropdown';
+import DatetimePicker from '../components/common/DatetimePicker';
 
 import ProjectsData from '../data/Projects' 
 import PeopleData from '../data/People' 
@@ -16,16 +20,36 @@ class Organizer extends Component {
         this.state = {
             organizers: [],
             participants: [],
-            cost: 0
+            cost: 0,
+            datetimeFrom: null,
+            datetimeTo: null,
+            meetinghr: 0
         }
         this.changeOrganizer = this.changeOrganizer.bind(this);
         this.changeParticipants = this.changeParticipants.bind(this);
+        this.changeDatetimeFrom = this.changeDatetimeFrom.bind(this);
+        this.changeDatetimeTo = this.changeDatetimeTo.bind(this);
     }
 
     calculateCost(organizers, participants) {
         const o = organizers.reduce((acc, p)=> acc + Roles.find(r => r.role === p.role)["rate"], 0);
         const p = participants.reduce((acc, p)=> acc + Roles.find(r => r.role === p.role)["rate"], 0);
        return o + p;
+    }
+
+    calculateHours(datetimeFrom, datetimeTo) {
+        if(datetimeFrom && datetimeTo) {
+            return moment.duration(datetimeTo.diff(datetimeFrom)).asHours();
+        }
+        return 0
+    }
+
+    changeDatetimeFrom(newDatetime) {
+        this.setState((prevState) => ({datetimeFrom: newDatetime, meetinghr: this.calculateHours(newDatetime, prevState.datetimeTo)}));
+    }
+
+    changeDatetimeTo(newDatetime) {
+        this.setState((prevState) => ({datetimeTo: newDatetime, meetinghr: this.calculateHours(prevState.datetimeFrom, newDatetime)}));
     }
 
     changeOrganizer({value, label}) {
@@ -49,7 +73,8 @@ class Organizer extends Component {
         const mapPeople = (people) => people.map(x => ({ value: x.name, label: x.name}));
         const mapActions = (actions) => actions.map(x => ({ value: x.name, label: x.name}));
         const mapRooms = (rooms) => rooms.map(x => ({ value: x.name, label: x.name}));
-
+        const cost = (this.state.cost * this.state.meetinghr);
+        const classNameCost = `text-right ${cost > 1000 ? 'text-danger' : ''}`;
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                            <div className="row">
@@ -62,15 +87,13 @@ class Organizer extends Component {
                             <div className="tab-content">
                                 <div id="tab-1" className="tab-pane active">
                                     <div className="panel-body">
-                                     <h1 className="text-right">€{this.state.cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</h1>
+                                     <h1 className={classNameCost}>{`${this.state.meetinghr} hr = €${cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')} `}</h1>
                                         <fieldset className="form-horizontal">
                                         <div className="form-group">
                                                 <label className="col-sm-2 control-label">Date from:</label>
                                                 <div className="col-sm-10">
                                                     <div className="input-group date">
-                                                        <span className="input-group-addon">
-                                                        <i className="fa fa-calendar"></i></span>
-                                                        <input type="text" className="form-control" value="07/01/2014" />
+                                                        <DatetimePicker onChange={this.changeDatetimeFrom} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,9 +101,7 @@ class Organizer extends Component {
                                                 <label className="col-sm-2 control-label">Date to:</label>
                                                 <div className="col-sm-10">
                                                     <div className="input-group date">
-                                                        <span className="input-group-addon">
-                                                        <i className="fa fa-calendar"></i></span>
-                                                        <input type="text" className="form-control" value="07/01/2014" />
+                                                        <DatetimePicker onChange={this.changeDatetimeTo} />
                                                     </div>
                                                 </div>
                                             </div>
