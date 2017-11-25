@@ -44,6 +44,11 @@ var config = {
                 include: path.join(__dirname, 'app')
             },
             {
+                test: /\.json$/,
+                use: ['json-loader'],
+                include: path.join(__dirname, 'app')
+            },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',

@@ -21,7 +21,7 @@ export default [
 	},		
   {
 		project_name: "Netherlands",
-		description: "New Sportsbook ", 
+		description: "L10 deployment ", 
 	},
   {
 		project_name: "Lottery West",

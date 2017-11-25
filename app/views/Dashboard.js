@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class Dashboard extends Component {
-
     render() {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
@@ -11,11 +10,11 @@ class Dashboard extends Component {
                     <div className="ibox float-e-margins">
                         <div className="ibox-title">
                             <span className="label label-success pull-right">Monthly</span>
-                            <h5>Money</h5>
+                            <h5>Cost</h5>
                         </div>
                         <div className="ibox-content">
-                            <h1 className="no-margins">€386,200</h1>
-                            <div className="stat-percent font-bold text-info">20% <i className="fa fa-level-up"></i></div>
+                            <h1 className="no-margins">€1.920</h1>
+                            <div className="stat-percent font-bold text-danger">20% <i className="fa fa-level-up"></i></div>
                             <small>Money Spend</small>
                         </div>
                     </div>
@@ -23,13 +22,13 @@ class Dashboard extends Component {
                 <div className="col-md-2">
                     <div className="ibox float-e-margins">
                         <div className="ibox-title">
-                            <span className="label label-info pull-right">Annual</span>
-                            <h5>Orders</h5>
+                            <span className="label label-success pull-right">Monthly</span>
+                            <h5>Hours</h5>
                         </div>
                         <div className="ibox-content">
-                                    <h1 className="no-margins">80,800</h1>
-                                    <div className="stat-percent font-bold text-info">20% <i className="fa fa-level-up"></i></div>
-                                    <small>New orders</small>
+                            <h1 className="no-margins">48 hr</h1>
+                            <div className="stat-percent font-bold text-danger">20% <i className="fa fa-level-up"></i></div>
+                            <small>Time Elapsed</small>
                         </div>
                     </div>
                 </div>
@@ -38,17 +37,17 @@ class Dashboard extends Component {
                     <div className="ibox float-e-margins">
                         <div className="ibox-title">
                             <span className="label label-primary pull-right">Today</span>
-                            <h5>visits</h5>
+                            <h5>Meetings</h5>
                         </div>
                         <div className="ibox-content">
 
                             <div className="row">
                                 <div className="col-md-6">
-                                    <h1 className="no-margins">$ 406,420</h1>
+                                    <h1 className="no-margins">€1.920</h1>
                                     <div className="font-bold text-navy">44% <i className="fa fa-level-up"></i> <small>Rapid pace</small></div>
                                 </div>
                                 <div className="col-md-6">
-                                    <h1 className="no-margins">206,120</h1>
+                                    <h1 className="no-margins">30 hr</h1>
                                     <div className="font-bold text-navy">22% <i className="fa fa-level-up"></i> <small>Slow pace</small></div>
                                 </div>
                             </div>
@@ -78,7 +77,6 @@ class Dashboard extends Component {
             </div>
         )
     }
-
 }
 
 export default Dashboard
