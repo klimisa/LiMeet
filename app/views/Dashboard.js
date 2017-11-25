@@ -11,12 +11,12 @@ class Dashboard extends Component {
                     <div className="ibox float-e-margins">
                         <div className="ibox-title">
                             <span className="label label-success pull-right">Monthly</span>
-                            <h5>Views</h5>
+                            <h5>Money</h5>
                         </div>
                         <div className="ibox-content">
-                            <h1 className="no-margins">386,200</h1>
-                            <div className="stat-percent font-bold text-success">98% <i className="fa fa-bolt"></i></div>
-                            <small>Total views</small>
+                            <h1 className="no-margins">€386,200</h1>
+                            <div className="stat-percent font-bold text-info">20% <i className="fa fa-level-up"></i></div>
+                            <small>Money Spend</small>
                         </div>
                     </div>
                 </div>
