@@ -62,7 +62,7 @@ class Organizer extends Component {
                             <div className="tab-content">
                                 <div id="tab-1" className="tab-pane active">
                                     <div className="panel-body">
-                                     <h1 className="text-right">{this.state.cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</h1>
+                                     <h1 className="text-right">€{this.state.cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</h1>
                                         <fieldset className="form-horizontal">
                                         <div className="form-group">
                                                 <label className="col-sm-2 control-label">Date from:</label>
