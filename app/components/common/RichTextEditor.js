@@ -10,13 +10,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class RichTextEditor extends Component {
   onChange(content) {
-    console.log('onChange', content);
+    
   }
 
   render() {
     return (
       <ReactSummernote
-        value="Default value"
+        value=""
         options={{
           lang: 'ru-RU',
           height: 350,

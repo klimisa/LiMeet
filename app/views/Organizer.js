@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import moment from 'moment';
 
+import { Button } from 'react-bootstrap';
+
 import RichTextEditor from '../components/common/RichTextEditor';
 import Dropdown from '../components/common/Dropdown';
 import MultiDropdown from '../components/common/MultiDropdown';
@@ -146,6 +148,8 @@ class Organizer extends Component {
                                                 </div>
                                             </div>
                                         </fieldset>
+
+                                        <Button bsStyle={`${overBudget ? 'danger' : 'primary'} pull-right`} disabled={overBudget ? 'disabled' : ''}>Submit</Button>
                                     </div>
                                 </div>
                             </div>
