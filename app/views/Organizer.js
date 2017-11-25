@@ -74,7 +74,8 @@ class Organizer extends Component {
         const mapActions = (actions) => actions.map(x => ({ value: x.name, label: x.name}));
         const mapRooms = (rooms) => rooms.map(x => ({ value: x.name, label: x.name}));
         const cost = (this.state.cost * this.state.meetinghr);
-        const classNameCost = `text-right ${cost > 1000 ? 'text-danger' : ''}`;
+        const overBudget = cost > 1000;
+        const classNameOverBudget = overBudget ? 'text-danger' : '';
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                            <div className="row">
@@ -87,7 +88,10 @@ class Organizer extends Component {
                             <div className="tab-content">
                                 <div id="tab-1" className="tab-pane active">
                                     <div className="panel-body">
-                                     <h1 className={classNameCost}>{`${this.state.meetinghr} hr = €${cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')} `}</h1>
+                                        <div className="text-right">
+                                            <h1 className={classNameOverBudget}>{`${this.state.meetinghr} hr = €${cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')} `}</h1>
+                                            <span className={classNameOverBudget}>{overBudget ? '* total budget restriction rule violated' : ''}</span>
+                                        </div>
                                         <fieldset className="form-horizontal">
                                         <div className="form-group">
                                                 <label className="col-sm-2 control-label">Date from:</label>

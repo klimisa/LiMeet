@@ -5,5 +5,4 @@ export default [
 	{name: "Brainstorming"},
 	{name: "Innovation"},
 	{name: "Design"},
-  
 ]
