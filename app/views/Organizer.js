@@ -91,7 +91,7 @@ class Organizer extends Component {
                                 <div id="tab-1" className="tab-pane active">
                                     <div className="panel-body">
                                         <div className="text-right">
-                                            <h1 className={classNameOverBudget}>{`${this.state.meetinghr.toFixed(1)} hr = €${cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')} `}</h1>
+                                            <h1 className={classNameOverBudget}>{`${this.state.meetinghr.toFixed(2)} hr = €${cost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')} `}</h1>
                                             <span className={classNameOverBudget}>{overBudget ? '* total budget restriction rule violated' : ''}</span>
                                         </div>
                                         <fieldset className="form-horizontal">
@@ -148,8 +148,9 @@ class Organizer extends Component {
                                                 </div>
                                             </div>
                                         </fieldset>
-
-                                        <Button bsStyle={`${overBudget ? 'danger' : 'primary'} pull-right`} disabled={overBudget ? 'disabled' : ''}>Submit</Button>
+                                        <div className="pull-right">
+                                            <Button bsStyle={`${overBudget ? "danger" : "primary"}`} disabled={overBudget}>Submit</Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

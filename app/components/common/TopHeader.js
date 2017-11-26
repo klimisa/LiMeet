@@ -36,6 +36,9 @@ class TopHeader extends React.Component {
                     <div className="navbar-collapse collapse" id="navbar">
                         <ul className="nav navbar-nav">
                             <li className="dropdown">
+                                <Link to="/dashboard">Dashboard</Link>
+                            </li>
+                            <li className="dropdown">
                                 <Link to="/organizer">Organizer</Link>
                             </li>
                             <li className="dropdown">
