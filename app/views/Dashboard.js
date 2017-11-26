@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 
-import '../../public/vendor/flot/jquery.flot.js'
-import '../../public/vendor/flot/jquery.flot.tooltip.min.js'
-import '../../public/vendor/flot/jquery.flot.spline.js'
-import '../../public/vendor/flot/jquery.flot.resize.js'
-import '../../public/vendor/flot/jquery.flot.pie.js'
-import '../../public/vendor/flot/jquery.flot.symbol.js'
-import '../../public/vendor/flot/jquery.flot.time.js'
+import '../../public/vendor/flot/jquery.flot.js';
+import '../../public/vendor/flot/jquery.flot.tooltip.min.js';
+import '../../public/vendor/flot/jquery.flot.spline.js';
+import '../../public/vendor/flot/jquery.flot.resize.js';
+import '../../public/vendor/flot/jquery.flot.pie.js';
+import '../../public/vendor/flot/jquery.flot.symbol.js';
+import '../../public/vendor/flot/jquery.flot.time.js';
+
+import '../../public/vendor/c3/c3.min.css';
+import c3 from '../../public/vendor/c3/c3.min.js';
+
+import '../../public/vendor/d3/d3.min.js';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -118,75 +123,74 @@ class Dashboard extends Component {
             var previousPoint = null, previousLabel = null;
 
             $.plot($("#flot-dashboard-chart"), dataset, options);
+
+             c3.generate({
+                bindto: '#slineChart',
+                data:{
+                    columns: [
+                        ['Ohio', 10000, 8000, 7000, 4000],
+                        ['Malta', 6000, 5500, 3000, 1000],
+                        ['Marocco', 8000, 3000, 2000, 4500]
+                    ],
+                    colors:{
+                        Ohio: '#1ab394',
+                        Malta: '#B642F4',
+                        Morocco: '#F4D742'
+                    },
+                    type: 'spline'
+                }
+            });
+
+              c3.generate({
+                bindto: '#pie',
+                data:{
+                    columns: [
+                        ['Ohio', 27],
+                        ['Montana', 7],
+                        ['Chile', 30],
+                        ['Malta', 13],
+                        ['Morocco', 13]
+                    ],
+                    colors:{
+                        Ohio: '#1ab394',
+                        Montana: '#1C84C6',
+                        Chile: '#F44268',
+                        Malta: '#B642F4',
+                        Morocco: '#F4D742'
+                    },
+                    type : 'pie'
+                }
+            });
     }
     render() {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <div className="ibox float-e-margins">
-                                <div className="ibox-title">
-                                    <span className="label label-success pull-right">
-                                        Monthly
-                                    </span>
-                                    <h5>Cost</h5>
-                                </div>
-                                <div className="ibox-content">
-                                    <h1 className="no-margins">€1.920</h1>
-                                    <div className="stat-percent font-bold text-danger">
-                                        20% <i className="fa fa-level-up" />
-                                    </div>
-                                    <small>Money Spend</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-2">
-                            <div className="ibox float-e-margins">
-                                <div className="ibox-title">
-                                    <span className="label label-success pull-right">
-                                        Monthly
-                                    </span>
-                                    <h5>Hours</h5>
-                                </div>
-                                <div className="ibox-content">
-                                    <h1 className="no-margins">48 hr</h1>
-                                    <div className="stat-percent font-bold text-danger">
-                                        20% <i className="fa fa-level-up" />
-                                    </div>
-                                    <small>Time Elapsed</small>
-                                </div>
-                            </div>
-                        </div>
-
+                <div className="row">
                         <div className="col-md-4">
                             <div className="ibox float-e-margins">
                                 <div className="ibox-title">
-                                    <span className="label label-primary pull-right">
-                                        Today
-                                    </span>
+                                    <span className="label label-primary pull-right">Today</span>
                                     <h5>Meetings</h5>
                                 </div>
                                 <div className="ibox-content">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <h1 className="no-margins">
-                                                €1.920
-                                            </h1>
-                                            <div className="font-bold text-navy">
-                                                44%{" "}
-                                                <i className="fa fa-level-up" />{" "}
-                                                <small>Rapid pace</small>
+                                            <h1 className="no-margins">€17.200</h1>
+                                            <div className="font-bold text-danger">
+                                                4%
+                                                {" "}<i className="fa fa-level-up" />
+                                                <small> Slow increase</small>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <h1 className="no-margins">
-                                                30 hr
+                                                428 hr
                                             </h1>
-                                            <div className="font-bold text-navy">
-                                                22%{" "}
-                                                <i className="fa fa-level-up" />{" "}
-                                                <small>Slow pace</small>
+                                            <div className="font-bold text-danger">
+                                                3%
+                                                {" "}<i className="fa fa-level-up" />
+                                                <small> Slow increase</small>
                                             </div>
                                         </div>
                                     </div>
@@ -196,22 +200,59 @@ class Dashboard extends Component {
                         <div className="col-md-4">
                             <div className="ibox float-e-margins">
                                 <div className="ibox-title">
-                                    <h5>Monthly income</h5>
-                                    <div className="ibox-tools">
-                                        <span className="label label-primary">
-                                            Updated 12.2015
-                                        </span>
+                                    <span className="label label-primary pull-right">Month</span>
+                                    <h5>Meetings</h5>
+                                </div>
+                                <div className="ibox-content">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <h1 className="no-margins">€351.450</h1>
+                                            <div className="font-bold text-navy">
+                                                6%
+                                                {" "}<i className="fa fa-level-down" />
+                                                <small> Small decrease</small>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <h1 className="no-margins">
+                                                8.784 hr
+                                            </h1>
+                                            <div className="font-bold text-navy">
+                                                8%
+                                                {" "}<i className="fa fa-level-down" />
+                                                <small> Small decrease</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="ibox-content no-padding">
-                                    <div
-                                        className="flot-chart m-t-lg"
-                                        style={{ height: "55px" }}
-                                    >
-                                        <div
-                                            className="flot-chart-content"
-                                            id="flot-chart1"
-                                        />
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="ibox float-e-margins">
+                                <div className="ibox-title">
+                                    <span className="label label-primary pull-right">Year</span>
+                                    <h5>Meetings</h5>
+                                </div>
+                                <div className="ibox-content">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <h2 className="no-margins">€4.238.500</h2>
+                                            <div className="font-bold text-navy">
+                                                11%
+                                                {" "}<i className="fa fa-level-down" />
+                                                <small> Rapid decrease</small>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <h2 className="no-margins">
+                                                105.962 hr
+                                            </h2>
+                                            <div className="font-bold text-navy">
+                                                14%
+                                                {" "}<i className="fa fa-level-down" />
+                                                <small> Rapid decrease</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +296,33 @@ class Dashboard extends Component {
 
                             </div>
                         </div>
+            </div>
+            <div className="row">
+                <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            <h5>Time allocation per project</h5>
+                        </div>
+                        <div className="ibox-content">
+                            <div>
+                                <div id="pie"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            <h5>Project budget in period</h5>
+                        </div>
+                        <div className="ibox-content">
+                            <div>
+                                <div id="slineChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>
             </div>
         );
