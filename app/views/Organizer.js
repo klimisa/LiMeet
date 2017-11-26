@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 
 import moment from 'moment';
+import toastr from 'toastr';
 
 import { Button } from 'react-bootstrap';
 
@@ -9,12 +11,14 @@ import Dropdown from '../components/common/Dropdown';
 import MultiDropdown from '../components/common/MultiDropdown';
 import DatetimePicker from '../components/common/DatetimePicker';
 
-import ProjectsData from '../data/Projects' 
-import PeopleData from '../data/People' 
-import ActionsData from '../data/Actions' 
-import RoomsData from '../data/Rooms' 
+import ProjectsData from '../data/Projects';
+import PeopleData from '../data/People';
+import ActionsData from '../data/Actions';
+import RoomsData from '../data/Rooms';
 
-import Roles from '../data/Roles'
+import Roles from '../data/Roles';
+
+import '../../node_modules/toastr/build/toastr.min.css';
 
 class Organizer extends Component {
     constructor() {
@@ -25,12 +29,14 @@ class Organizer extends Component {
             cost: 0,
             datetimeFrom: null,
             datetimeTo: null,
-            meetinghr: 0
+            meetinghr: 0,
+            redirect: false
         }
         this.changeOrganizer = this.changeOrganizer.bind(this);
         this.changeParticipants = this.changeParticipants.bind(this);
         this.changeDatetimeFrom = this.changeDatetimeFrom.bind(this);
         this.changeDatetimeTo = this.changeDatetimeTo.bind(this);
+        this.saveMeeting = this.saveMeeting.bind(this);
     }
 
     calculateCost(organizers, participants) {
@@ -70,6 +76,14 @@ class Organizer extends Component {
         }); 
     }
 
+    saveMeeting(e) {
+        e.preventDefault()
+        if (this.state.cost > 0) {
+            toastr.success('Meeting saved.');
+             hashHistory.push('/dashboard');
+        }
+    }
+
     render() {
         const mapProjects = (projects) => projects.map(x => ({ value: x.project_name, label: `${x.project_name} - ${x.description}`}));
         const mapPeople = (people) => people.map(x => ({ value: x.name, label: x.name}));
@@ -78,6 +92,7 @@ class Organizer extends Component {
         const cost = (this.state.cost * this.state.meetinghr);
         const overBudget = cost > 1000;
         const classNameOverBudget = overBudget ? 'text-danger' : '';
+
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                            <div className="row">
@@ -149,7 +164,7 @@ class Organizer extends Component {
                                             </div>
                                         </fieldset>
                                         <div className="pull-right">
-                                            <Button bsStyle={`${overBudget ? "danger" : "primary"}`} disabled={overBudget}>Submit</Button>
+                                            <Button bsStyle={`${overBudget ? "danger" : "primary"}`} disabled={overBudget} onClick={this.saveMeeting}>Submit</Button>
                                         </div>
                                     </div>
                                 </div>

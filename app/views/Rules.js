@@ -12,7 +12,7 @@ class Rules extends Component {
                                 <div className="no-padding">
                                     <h2>General Rules</h2>
                                     <ul className="list-group">
-                                        <li className="list-group-item">Absolute Meeting Bufget: €1.000</li>
+                                        <li className="list-group-item">Absolute Meeting Budget: €1.000</li>
                                         <li className="list-group-item">No more than 50% of available for anyone</li>
                                         <li className="list-group-item">No more than 10% of available time for Devs</li>
                                     </ul>
