@@ -16,14 +16,14 @@ import '../../public/vendor/d3/d3.min.js';
 class Dashboard extends Component {
     componentDidMount() {
           var data2 = [
-                [gd(2017, 11, 1), 7], [gd(2017, 11, 2), 6], [gd(2017, 11, 3), 4], [gd(2017, 11, 4), 8],
-                [gd(2017, 11, 5), 9], [gd(2017, 11, 6), 7], [gd(2017, 11, 7), 5], [gd(2017, 11, 8), 4],
-                [gd(2017, 11, 9), 7], [gd(2017, 11, 10), 8], [gd(2017, 11, 11), 9], [gd(2017, 11, 12), 6],
-                [gd(2017, 11, 13), 4], [gd(2017, 11, 14), 5], [gd(2017, 11, 15), 11], [gd(2017, 11, 16), 8],
-                [gd(2017, 11, 17), 8], [gd(2017, 11, 18), 11], [gd(2017, 11, 19), 11], [gd(2017, 11, 20), 6],
-                [gd(2017, 11, 21), 6], [gd(2017, 11, 22), 8], [gd(2017, 11, 23), 11], [gd(2017, 11, 24), 13],
-                [gd(2017, 11, 25), 7], [gd(2017, 11, 26), 9], [gd(2017, 11, 27), 9], [gd(2017, 11, 28), 8],
-                [gd(2017, 11, 29), 5], [gd(2017, 11, 30), 8], [gd(2017, 11, 31), 25]
+                [gd(2017, 11, 1), 7000], [gd(2017, 11, 2), 6000], [gd(2017, 11, 3), 4000], [gd(2017, 11, 4), 8000],
+                [gd(2017, 11, 5), 9000], [gd(2017, 11, 6), 7000], [gd(2017, 11, 7), 5000], [gd(2017, 11, 8), 4000],
+                [gd(2017, 11, 9), 7000], [gd(2017, 11, 10), 8000], [gd(2017, 11, 11), 9000], [gd(2017, 11, 12), 6000],
+                [gd(2017, 11, 13), 4000], [gd(2017, 11, 14), 5000], [gd(2017, 11, 15), 11000], [gd(2017, 11, 16), 8000],
+                [gd(2017, 11, 17), 8000], [gd(2017, 11, 18), 11000], [gd(2017, 11, 19), 11000], [gd(2017, 11, 20), 6000],
+                [gd(2017, 11, 21), 6000], [gd(2017, 11, 22), 8000], [gd(2017, 11, 23), 11000], [gd(2017, 11, 24), 13000],
+                [gd(2017, 11, 25), 7000], [gd(2017, 11, 26), 9000], [gd(2017, 11, 27), 9000], [gd(2017, 11, 28), 8000],
+                [gd(2017, 11, 29), 5000], [gd(2017, 11, 30), 8000], [gd(2017, 11, 31), 25000]
             ];
 
             var data3 = [
@@ -274,7 +274,7 @@ class Dashboard extends Component {
                                 <div className="col-lg-3">
                                     <ul className="stat-list">
                                         <li>
-                                            <h2 className="no-margins">2,346</h2>
+                                            <h2 className="no-margins">€351.450</h2>
                                             <small>Total amount spend in period</small>
                                             <div className="stat-percent">48% <i className="fa fa-level-up text-navy"></i></div>
                                             <div className="progress progress-mini">
@@ -282,7 +282,7 @@ class Dashboard extends Component {
                                             </div>
                                         </li>
                                         <li>
-                                            <h2 className="no-margins ">4,422</h2>
+                                            <h2 className="no-margins ">8.784 hr</h2>
                                             <small>Hours spend in last month</small>
                                             <div className="stat-percent">60% <i className="fa fa-level-down text-navy"></i></div>
                                             <div className="progress progress-mini">
