@@ -276,7 +276,7 @@ class Dashboard extends Component {
                                         <li>
                                             <h2 className="no-margins">€351.450</h2>
                                             <small>Total amount spend in period</small>
-                                            <div className="stat-percent">48% <i className="fa fa-level-up text-navy"></i></div>
+                                            <div className="stat-percent">6% <i className="fa fa-level-down text-navy"></i></div>
                                             <div className="progress progress-mini">
                                                 <div style={{width: "48%"}} className="progress-bar"></div>
                                             </div>
@@ -284,7 +284,7 @@ class Dashboard extends Component {
                                         <li>
                                             <h2 className="no-margins ">8.784 hr</h2>
                                             <small>Hours spend in last month</small>
-                                            <div className="stat-percent">60% <i className="fa fa-level-down text-navy"></i></div>
+                                            <div className="stat-percent">8% <i className="fa fa-level-down text-navy"></i></div>
                                             <div className="progress progress-mini">
                                                 <div style={{width: "60%"}} className="progress-bar"></div>
                                             </div>
